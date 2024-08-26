@@ -2,32 +2,289 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  html {
+    --line-color: #f3f1ef;
+    @apply !scroll-smooth;
   }
-}
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
+  body {
+    @apply bg-primary relative overflow-x-hidden text-typography-primary leading-p before:content-[""] before:bg-tertiary before:absolute before:top-[-6rem] before:right-[11rem] before:-z-10 before:h-[31.25rem] before:w-[31.25rem] before:rounded-full before:blur-[10rem] sm:before:w-[68.75rem] after:content-[""] after:bg-primary after:absolute after:top-[-1rem] after:left-[-35rem] after:h-[31.25rem] after:w-[31.25rem] after:rounded-full after:blur-[10rem] sm:after:w-[68.75rem] md:after:left-[-3rem] lg:after:left-[-28rem] xl:after:left-[-15rem] 2xl:after:left-[-5rem] after:-z-10;
+  }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  main {
+    @apply pt-20;
+  }
+
+  nav {
+    @apply z-[999] fixed sm:h-[92px] md:h-header flex flex-col items-center justify-center w-screen top-0 left-0;
+  }
+
+  nav ul {
+    @apply flex flex-row flex-wrap p-3 gap-y-4 items-start justify-center md:gap-2 md:rounded-full sm:rounded-none bg-primary shadow-md;
+  }
+
+  nav ul li .default {
+    @apply py-2 px-4 hover:bg-ghost-primary-20 rounded-full font-bold transition;
+  }
+
+  nav ul li .active {
+    @apply text-typography-brand py-2 px-4 font-bold;
+  }
+
+  nav ul li a {
+    @apply relative;
+  }
+
+  nav ul li a .active-label {
+    @apply relative z-10;
+  }
+
+  nav ul li a .active-bg {
+    @apply bg-ghost-primary-30 rounded-full absolute inset-0;
+  }
+
+  section {
+    @apply flex items-center justify-center self-stretch scroll-mt-28;
+  }
+
+  #home {
+    @apply min-h-[700px];
+  }
+
+  .hero {
+    @apply flex flex-col lg:flex-row;
+  }
+
+  .hero-image {
+    @apply relative drop-shadow-2xl w-auto inline-block;
+  }
+
+  .hero-image .raw {
+    @apply absolute w-full h-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10;
+  }
+
+  .hero-image .raw img {
+    @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+
+  .hero-headline {
+    @apply flex flex-col items-center lg:items-start gap-4 flex-equal;
+  }
+
+  /*********** Typography ***********/
+  h1 {
+    @apply font-bold text-3xl leading-h1;
+  }
+
+  h1 span {
+    @apply font-normal;
+  }
+
+  h2 {
+    @apply text-2xl font-bold;
+  }
+
+  h3 {
+    @apply text-xl font-bold;
+  }
+
+  h4 {
+    @apply text-xl font-bold;
+  }
+
+  h5 {
+    @apply text-lg font-bold;
+  }
+
+  h6 {
+    @apply text-base font-bold;
+  }
+
+  /*********** UI ***********/
+  .container {
+    @apply flex pb-20 pt-12 justify-center items-center gap-14 px-4;
+  }
+
+  .button {
+    @apply flex justify-center items-center gap-2 rounded-full font-bold disabled:scale-100 disabled:bg-opacity-75 disabled:hover:scale-100 disabled:hover:opacity-75;
+  }
+
+  button.primary {
+    @apply bg-secondary text-tertiary-light;
+  }
+
+  button.secondary {
+    @apply bg-tertiary text-secondary;
+  }
+
+  button.danger {
+    @apply bg-rose-600 text-white;
+  }
+
+  button.small {
+    @apply text-sm px-4 py-2;
+  }
+
+  button.medium {
+    @apply px-6 py-3;
+  }
+
+  button.large {
+    @apply px-8 py-4;
+  }
+
+  a.primary {
+    @apply bg-secondary text-tertiary;
+  }
+
+  a.secondary {
+    @apply bg-tertiary text-secondary;
+  }
+
+  a.danger {
+    @apply bg-rose-600 text-white;
+  }
+
+  a.small {
+    @apply text-sm px-4 py-2;
+  }
+
+  a.medium {
+    @apply px-6 py-3;
+  }
+
+  a.large {
+    @apply px-8 py-4;
+  }
+
+  /*********** Project Section ***********/
+  .project-card {
+    @apply bg-ghost-primary-20 border border-ghost-primary-40 overflow-hidden text-left relative sm:pr-8 h-[20rem] hover:bg-ghost-primary-30 transition rounded-lg;
+  }
+
+  .project-card .wrapper {
+    @apply pt-4 pb-7 px-5 sm:pl-10 sm:pr-2 sm:pt-10 sm:max-w-[50%] flex flex-col h-full justify-between sm:justify-start;
+  }
+
+  .project-card .wrapper p {
+    @apply leading-relaxed text-typography-secondary mt-2 text-xs;
+  }
+
+  .project-card .wrapper ul {
+    @apply flex flex-wrap gap-2 mt-4;
+  }
+
+  .project-card .wrapper ul li {
+    @apply bg-tertiary text-xs uppercase tracking-wider text-secondary rounded-full font-bold px-3 py-1;
+  }
+
+  .project-card img {
+    @apply absolute top-8 -right-40 w-[28.25rem] rounded-t-lg shadow-2xl sm:block hidden;
+  }
+
+  /*********** Skills Section ***********/
+
+  .skills-grid {
+    @apply grid;
+  }
+
+  .skill-wrapper {
+    @apply flex flex-wrap gap-6 justify-center;
+  }
+
+  .skill-wrapper li {
+    @apply w-24 h-24 border border-ghost-secondary-20 border-solid bg-ghost-secondary-10 rounded-xl flex flex-col justify-center items-center gap-1;
+  }
+
+  .skill-label {
+    @apply text-xs font-bold text-typography-secondary;
+  }
+
+  /*********** Experiences Section ***********/
+
+  .experiences-item {
+    @apply flex flex-col gap-4;
+  }
+
+  .experiences-item div {
+    @apply flex flex-col gap-2;
+  }
+
+  .experiences-item div h3 {
+    @apply capitalize;
+  }
+
+  .experiences-item div p {
+    @apply !mt-0 font-bold !text-sm;
+  }
+
+  .experiences-item .description {
+    @apply !mt-0 !text-sm !leading-[23px];
+  }
+
+  .icon {
+    @apply !bg-primary relative !flex !justify-center !items-center;
+  }
+
+  .icon svg {
+    width: 24px !important;
+    height: 24px !important;
+    margin: 0 !important;
+    left: 0 !important;
+    top: 0 !important;
+  }
+
+  /*********** Contacts Section ***********/
+  .contacts-container {
+    @apply flex flex-col items-center gap-8 text-center;
+  }
+
+  .contacts-container p {
+    @apply text-typography-secondary -mt-6;
+  }
+
+  .contacts-container p a {
+    @apply underline;
+  }
+
+  form {
+    @apply flex mt-6 flex-col self-stretch;
+  }
+
+  form input {
+    @apply h-14 rounded-lg border border-typography-tertiary px-4 focus:outline-none focus:border-secondary focus:border-2 self-stretch;
+  }
+
+  form textarea {
+    @apply h-52 my-3 rounded-lg border border-typography-tertiary p-4 focus:outline-none focus:border-secondary focus:border-2;
+  }
+
+  form .button {
+    @apply w-fit;
+  }
+
+  /*********** Footer Section ***********/
+
+  footer {
+    @apply mb-10 px-4 text-center text-typography-tertiary;
+  }
+
+  footer small {
+    @apply mb-2 text-xs;
+  }
+
+  footer p {
+    @apply text-xs;
+  }
+
+  footer p span {
+    @apply font-bold;
+  }
+
+  /*********** Theme Switcher Section ***********/
+
+  .toggle {
+    @apply fixed bottom-5 right-5 bg-primary h-[3rem] w-[3rem] border border-white border-opacity-40 shadow-2xl rounded-full flex justify-center items-center hover:scale-[1.15] active:scale-105 transition-all;
   }
 }
